@@ -5,8 +5,8 @@ function getDoctor(id) {
 	return doctor;
 }
 
-function getAllDoctors() {
-	const doctors = DoctorRepository.getAllDoctors();
+function getAllDoctors(index) {
+	const doctors = DoctorRepository.getAllDoctors(index);
 	return doctors;
 }
 

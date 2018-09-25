@@ -5,8 +5,8 @@ function getUser(id) {
 	return user;
 }
 
-function getAllUsers() {
-	const users = UserRepository.getAllUsers();
+function getAllUsers(index) {
+	const users = UserRepository.getAllUsers(index);
 	return users;
 }
 

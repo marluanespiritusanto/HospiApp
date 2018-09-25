@@ -5,8 +5,15 @@ async function getDoctor(id) {
 	return doctor;
 }
 
-async function getAllDoctors() {
-	const doctors = await DoctorSchema.find({});
+async function getAllDoctors(index) {
+	const doctors = await DoctorSchema.find({})
+		.populate('user', 'name email')
+		.populate('hospital')
+		.skip(index)
+		.limit(5);
+
+	const count = await DoctorSchema.count();
+	doctors.count = count;
 	return doctors;
 }
 

@@ -5,8 +5,13 @@ async function getUser(id) {
 	return user;
 }
 
-async function getAllUsers() {
-	const users = await UserSchema.find({});
+async function getAllUsers(index) {
+	const users = await UserSchema.find({})
+		.skip(index)
+		.limit(5);
+
+	const count = await UserSchema.count();
+	doctors.count = count;
 	return users;
 }
 

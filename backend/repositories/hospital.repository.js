@@ -5,8 +5,13 @@ async function getHospital(id) {
 	return hospital;
 }
 
-async function getAllHospitals() {
-	const hospitals = await HospitalSchema.find({});
+async function getAllHospitals(index) {
+	const hospitals = await HospitalSchema.find({})
+		.populate('user', 'name email')
+		.skip(index)
+		.limit(2);
+	const count = await HospitalSchema.count();
+	doctors.count = count;
 	return hospitals;
 }
 

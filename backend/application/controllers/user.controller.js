@@ -32,13 +32,15 @@ async function getUser(req, res, next) {
 
 async function getAllUsers(req, res, next) {
 	try {
-		const users = await UserService.getAllUsers();
+		const { page } = req.query;
+		const users = await UserService.getAllUsers(parseInt(page) || 0);
 		return res.status(201).send({
 			error: false,
 			serviceName: 'ngHospital API',
 			message: null,
 			payload: {
-				users
+				users,
+				count: users.count
 			}
 		});
 	} catch (ex) {

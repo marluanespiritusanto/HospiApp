@@ -32,13 +32,15 @@ async function getHospital(req, res, next) {
 
 async function getAllHospitals(req, res, next) {
 	try {
-		const hospitals = await HospitalService.getAllHospitals();
+		const { page } = req.query;
+		const hospitals = await HospitalService.getAllHospitals(parseInt(page) || 0);
 		return res.status(201).send({
 			error: false,
 			serviceName: 'ngHospital API',
 			message: null,
 			payload: {
-				hospitals
+				hospitals,
+				count: hospitals.count
 			}
 		});
 	} catch (ex) {

@@ -5,8 +5,8 @@ function getHospital(id) {
 	return hospital;
 }
 
-function getAllHospitals() {
-	const hospitals = HospitalRepository.getAllHospitals();
+function getAllHospitals(index) {
+	const hospitals = HospitalRepository.getAllHospitals(index);
 	return hospitals;
 }
 
