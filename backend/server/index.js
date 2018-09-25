@@ -4,13 +4,15 @@ const database = require('../repositories/util/db');
 const bodyParser = require('body-parser');
 
 // Routes
-const { UserRoutes, AccountRoutes } = require('../application/routes');
+const { UserRoutes, AccountRoutes, HospitalRoutes, DoctorRoutes } = require('../application/routes');
 
 // Middlewares
 express.use(bodyParser.json());
 express.use(bodyParser.urlencoded({ extended: false }));
 express.use('/api/v1/user', UserRoutes);
 express.use('/api/v1/account', AccountRoutes);
+express.use('/api/v1/hospital', HospitalRoutes);
+express.use('/api/v1/doctor', DoctorRoutes);
 
 // Server up and running
 database('mongo', MONGO_URI)
