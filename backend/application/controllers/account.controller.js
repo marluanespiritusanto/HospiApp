@@ -1,4 +1,4 @@
-const { AccountService } = require('../../services');
+const { AccountService, JWTService } = require('../../services');
 
 async function login(req, res, next) {
 	try {
@@ -26,7 +26,7 @@ async function login(req, res, next) {
 			serviceName: 'ngHospital API',
 			message: null,
 			payload: {
-				userExits
+				token: JWTService.generateToken(userExits)
 			}
 		});
 	} catch (ex) {
