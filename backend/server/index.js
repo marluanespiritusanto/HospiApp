@@ -2,18 +2,28 @@ const express = require('express')();
 const { PORT, MONGO_URI } = require('../config');
 const database = require('../repositories/util/db');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 // Routes
-const { UserRoutes, AccountRoutes, HospitalRoutes, DoctorRoutes, SearchRoutes } = require('../application/routes');
+const {
+	UserRoutes,
+	AccountRoutes,
+	HospitalRoutes,
+	DoctorRoutes,
+	SearchRoutes,
+	UploadRoutes
+} = require('../application/routes');
 
 // Middlewares
 express.use(bodyParser.json());
 express.use(bodyParser.urlencoded({ extended: false }));
+express.use(fileUpload());
 express.use('/api/v1/user', UserRoutes);
 express.use('/api/v1/account', AccountRoutes);
 express.use('/api/v1/hospital', HospitalRoutes);
 express.use('/api/v1/doctor', DoctorRoutes);
 express.use('/api/v1/search', SearchRoutes);
+express.use('/api/v1/upload', UploadRoutes);
 
 // Server up and running
 database('mongo', MONGO_URI)

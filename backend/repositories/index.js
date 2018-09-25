@@ -3,5 +3,6 @@ module.exports = {
 	AccountRepository: require('./account.repository'),
 	DoctorRepository: require('./doctor.repository'),
 	HospitalRepository: require('./hospital.repository'),
-	SearchRepository: require('./search.repository')
+	SearchRepository: require('./search.repository'),
+	UploadRepository: require('./upload.repository')
 };

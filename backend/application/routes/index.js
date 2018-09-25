@@ -3,5 +3,6 @@ module.exports = {
 	AccountRoutes: require('./account.routes'),
 	DoctorRoutes: require('./doctor.routes'),
 	HospitalRoutes: require('./hospital.routes'),
-	SearchRoutes: require('./search.routes')
+	SearchRoutes: require('./search.routes'),
+	UploadRoutes: require('./upload.routes')
 };

@@ -3,5 +3,6 @@ module.exports = {
 	AccountController: require('./account.controller'),
 	HospitalController: require('./hospital.controller'),
 	DoctorController: require('./doctor.controller'),
-	SearchController: require('./search.controller')
+	SearchController: require('./search.controller'),
+	UploadController: require('./upload.controller')
 };

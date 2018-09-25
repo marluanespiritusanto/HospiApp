@@ -4,5 +4,6 @@ module.exports = {
 	JWTService: require('./jwt.service'),
 	HospitalService: require('./hospital.service'),
 	DoctorService: require('./doctor.service'),
-	SearchService: require('./search.service')
+	SearchService: require('./search.service'),
+	UploadService: require('./upload.service')
 };
