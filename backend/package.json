@@ -1,0 +1,23 @@
+{
+	"name": "ng-hospital-backend",
+	"version": "1.0.0",
+	"description": "ngHospital Backend",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon ./server/index.js"
+	},
+	"keywords": [
+		"nodejs"
+	],
+	"author": "Marluan Espiritusanto",
+	"license": "ISC",
+	"dependencies": {
+		"bcrypt-nodejs": "0.0.3",
+		"body-parser": "^1.18.3",
+		"express": "^4.16.3",
+		"mongoose": "^5.2.17"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.4"
+	}
+}
