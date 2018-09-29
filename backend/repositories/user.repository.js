@@ -11,7 +11,7 @@ async function getAllUsers(index) {
 		.limit(5);
 
 	const count = await UserSchema.count();
-	doctors.count = count;
+	users.countDocuments = count;
 	return users;
 }
 

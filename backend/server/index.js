@@ -11,7 +11,8 @@ const {
 	HospitalRoutes,
 	DoctorRoutes,
 	SearchRoutes,
-	UploadRoutes
+	UploadRoutes,
+	PictureRoutes
 } = require('../application/routes');
 
 // Middlewares
@@ -24,6 +25,7 @@ express.use('/api/v1/hospital', HospitalRoutes);
 express.use('/api/v1/doctor', DoctorRoutes);
 express.use('/api/v1/search', SearchRoutes);
 express.use('/api/v1/upload', UploadRoutes);
+express.use('/api/v1/picture', PictureRoutes);
 
 // Server up and running
 database('mongo', MONGO_URI)

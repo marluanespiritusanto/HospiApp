@@ -1,4 +1,4 @@
-const { UploadService } = require('../../services');
+const { UploadService, UserService, HospitalService, DoctorService } = require('../../services');
 
 async function upload(req, res, next) {
 	try {
@@ -18,6 +18,7 @@ async function upload(req, res, next) {
 		const allowedTypes = ['doctor', 'hospital', 'user'];
 		const isValidType = allowedTypes.includes(type);
 		const isAValidFile = allowedFiles.includes(fileExtension);
+		let validEntity = null;
 
 		if (!isValidType) {
 			return res.status(400).send({
@@ -35,6 +36,28 @@ async function upload(req, res, next) {
 			});
 		}
 
+		switch (type) {
+			case 'user':
+				validEntity = await UserService.getUser(id);
+				break;
+			case 'hospital':
+				validEntity = await HospitalService.getHospital(id);
+				break;
+			case 'doctor':
+				validEntity = await DoctorService.getDoctor(id);
+				break;
+			default:
+				break;
+		}
+
+		if (!validEntity) {
+			return res.status(404).send({
+				error: false,
+				serviceName: 'ngHospital API',
+				message: 'entity not found'
+			});
+		}
+
 		const fileName = `${id}-${new Date().getMilliseconds()}.${fileExtension}`;
 		const path = `${__dirname}/../../uploads/${type}s/${fileName}`;
 
@@ -42,14 +65,14 @@ async function upload(req, res, next) {
 			if (err) throw err;
 		});
 
-		await UploadService.updatePicture(type, id, fileName);
+		const entity = await UploadService.updatePicture(validEntity, type, fileName);
 
 		return res.send({
 			error: false,
 			serviceName: 'ngHospital API',
 			message: null,
 			payload: {
-				message: 'ok'
+				message: 'picture updated'
 			}
 		});
 	} catch (ex) {

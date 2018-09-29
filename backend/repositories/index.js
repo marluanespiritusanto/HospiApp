@@ -4,5 +4,6 @@ module.exports = {
 	DoctorRepository: require('./doctor.repository'),
 	HospitalRepository: require('./hospital.repository'),
 	SearchRepository: require('./search.repository'),
-	UploadRepository: require('./upload.repository')
+	UploadRepository: require('./upload.repository'),
+	PictureRepository: require('./picture.repository')
 };

@@ -4,5 +4,6 @@ module.exports = {
 	DoctorRoutes: require('./doctor.routes'),
 	HospitalRoutes: require('./hospital.routes'),
 	SearchRoutes: require('./search.routes'),
-	UploadRoutes: require('./upload.routes')
+	UploadRoutes: require('./upload.routes'),
+	PictureRoutes: require('./picture.routes')
 };

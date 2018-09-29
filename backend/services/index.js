@@ -5,5 +5,6 @@ module.exports = {
 	HospitalService: require('./hospital.service'),
 	DoctorService: require('./doctor.service'),
 	SearchService: require('./search.service'),
-	UploadService: require('./upload.service')
+	UploadService: require('./upload.service'),
+	PictureService: require('./picture.service')
 };
