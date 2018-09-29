@@ -8,7 +8,8 @@ const UserSchema = new Schema({
 	email: { type: String, required: [true, 'email is required'], unique: true },
 	password: { type: String, required: [true, 'password is required'] },
 	picture: { type: String },
-	role: { type: String, required: true, default: 'USER_ROLE' }
+	role: { type: String, required: true, default: 'USER_ROLE' },
+	isGoogleUser: { type: Boolean, default: false }
 });
 
 UserSchema.methods.toJSON = function() {
