@@ -30,6 +30,8 @@ async function login(req, res, next) {
 			serviceName: 'ngHospital API',
 			message: null,
 			payload: {
+				error: false,
+				currentUser: userExits,
 				token: JWTService.generateToken(userExits)
 			}
 		});
@@ -60,24 +62,26 @@ async function verify(token) {
 async function loginGoogle(req, res, next) {
 	try {
 		const { token } = req.body;
+
 		const googleUser = await verify(token);
 
-		const userExits = await AccountService.getUserByEmail(email);
+		const userExits = await AccountService.getUserByEmail(googleUser.email);
 		if (!userExits) {
 			const user = {
 				name: googleUser.name,
 				email: googleUser.email,
 				picture: googleUser.picture,
 				isGoogleUser: true,
-				password: ':)'
+				password: 'password'
 			};
 
-			const createdUser = await UserService.createUser(user);
+			const createdUser = (await UserService.createUser(user))[0];
 			return res.send({
 				error: false,
 				serviceName: 'ngHospital API',
 				message: null,
 				payload: {
+					currentUser: createdUser,
 					token: JWTService.generateToken(createdUser)
 				}
 			});
@@ -89,6 +93,7 @@ async function loginGoogle(req, res, next) {
 				serviceName: 'ngHospital API',
 				message: null,
 				payload: {
+					currentUser: userExits,
 					token: JWTService.generateToken(userExits)
 				}
 			});

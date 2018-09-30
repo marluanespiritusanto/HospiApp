@@ -27,7 +27,8 @@ async function createUser(user) {
 			lastname: user.lastname,
 			email: user.email,
 			password: user.password,
-			picture: user.picture
+			picture: user.picture,
+			isGoogleUser: user.isGoogleUser || false
 		}
 	]);
 

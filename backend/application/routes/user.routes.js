@@ -4,7 +4,7 @@ const { JWTMiddleware } = require('../middlewares');
 
 router.get('/', UserController.getAllUsers);
 router.get('/:id', UserController.getUser);
-router.post('/', JWTMiddleware, UserController.createUser);
+router.post('/', UserController.createUser);
 router.put('/:id', JWTMiddleware, UserController.updateUser);
 router.delete('/:id', JWTMiddleware, UserController.deleteUser);
 

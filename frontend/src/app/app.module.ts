@@ -12,12 +12,12 @@ import { RegisterComponent } from './login/register.component';
 import { PagesModule } from './pages/pages.module';
 import { IncrementerComponent } from './components/incrementer/incrementer.component';
 import { ServiceModule } from './services/service.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, IncrementerComponent],
-  imports: [BrowserModule, APP_ROUTES, PagesModule, ServiceModule, FormsModule],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [AppComponent, LoginComponent, RegisterComponent, IncrementerComponent],
+	imports: [BrowserModule, APP_ROUTES, PagesModule, ServiceModule, FormsModule, ReactiveFormsModule],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule {}
