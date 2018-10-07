@@ -1,0 +1,51 @@
+<div class="row animated fadeIn">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">User profile</h4>
+        <h6 class="card-subtitle">Change your profile information here</h6>
+        <form class="form p-t-20" ngNativeValidate #form="ngForm" (ngSubmit)="UpdateProfile(form.value)">
+          <div class="form-group">
+            <label for="exampleInputuname">Name</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-user"></i></div>
+              <input type="text" class="form-control" required placeholder="Name" [ngModel]="user.name" name="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputuname">Lastname</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-user"></i></div>
+              <input type="text" class="form-control" [ngModel]="user.lastname" name="lastname">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-email"></i></div>
+              <input type="email" class="form-control" [ngModel]="user.email" [disabled]="user.isGoogleUser" name="email">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success waves-effect waves-light m-r-10"> <i class="fa fa-save"></i>
+            Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body" align="center">
+        <h4 class="card-title">Photo profile</h4>
+        <img *ngIf="!tempImage" [src]="user.picture | image" style="width: 150px;">
+        <img *ngIf="tempImage" [src]="tempImage" style="width: 150px;">
+        <input (change)="SelectFile($event.target.files[0])" type="file" name="" id="">
+        <br>
+        <br>
+        <button (click)="UpdateImage()" [disabled]="!image" type="button" class="btn btn-success waves-effect waves-light m-r-10 btn-block">
+          <i class="fa fa-save"></i>
+          Update</button>
+      </div>
+    </div>
+  </div>
+
+</div>

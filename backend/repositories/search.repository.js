@@ -1,25 +1,44 @@
-const { HospitalSchema, DoctorSchema } = require('./schemas');
+const { HospitalSchema, DoctorSchema, UserSchema } = require('./schemas');
 
 async function searchAll(query) {
 	const regex = new RegExp(query, 'i');
 	const hospitals = await HospitalSchema.find({ name: regex });
 	const doctors = await DoctorSchema.find({ name: regex });
+	const users = await UserSchema.find({ name: regex });
 	return {
 		hospitals,
-		doctors
+		doctors,
+		users
 	};
 }
 
 async function searchDoctors(query) {
 	const regex = new RegExp(query, 'i');
-	const hospitals = await HospitalSchema.find({ name: regex });
 	const doctors = await DoctorSchema.find({ name: regex });
 	return {
-		hospitals,
 		doctors
 	};
 }
 
+async function searchUsers(query) {
+	const regex = new RegExp(query, 'i');
+	const users = await UserSchema.find({ name: regex });
+	return {
+		users
+	};
+}
+
+async function searchHospitals(query) {
+	const regex = new RegExp(query, 'i');
+	const hospitals = await HospitalSchema.find({ name: regex });
+	return {
+		hospitals
+	};
+}
+
 module.exports = {
-	searchAll
+	searchAll,
+	searchDoctors,
+	searchHospitals,
+	searchUsers
 };

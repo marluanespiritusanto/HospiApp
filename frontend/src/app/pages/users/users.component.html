@@ -1,0 +1,66 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input type="text" class="form-control" placeholder="Search" #input (keyup)="FindUser(input.value)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="isLoading">
+  <div class="col-sm-12">
+    <div class="alert alert-warning text-center">
+      <strong>Loading</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!isLoading">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Registered Users (<small>{{total}}</small>)</h3>
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Picture</th>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Lastname</th>
+              <th>Role</th>
+              <th>Google</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td><img [src]="user.picture | image" class="img-circle" style="cursor: pointer; width: 50px;" (click)="ShowModal(user._id)"></td>
+              <td>{{user.email}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.lastname}}</td>
+              <td>
+                <select class="form-control" name="role" [(ngModel)]="user.role">
+                  <option value="ADMIN_ROLE">Admin</option>
+                  <option value="USER_ROLE">Default</option>
+                </select>
+              </td>
+              <td>
+                <label *ngIf="user.isGoogleUser" class="label label-danger">Google</label>
+                <label *ngIf="!user.isGoogleUser" class="label label-info">Default</label>
+              </td>
+              <td>
+                <button class="btn btn-primary" (click)="UpdateRole(user)"><i class="fa fa-save"></i></button> |
+                <button class="btn btn-danger" (click)="DeleteUser(user)"><i class="fa fa-trash-o"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-secondary" (click)="ChangePage(-5)">Previous</button>
+        <button class="btn btn-secondary" (click)="ChangePage(5)">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

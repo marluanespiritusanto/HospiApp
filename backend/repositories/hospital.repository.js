@@ -10,8 +10,8 @@ async function getAllHospitals(index) {
 		.populate('user', 'name email')
 		.skip(index)
 		.limit(2);
-	const count = await HospitalSchema.count();
-	doctors.count = count;
+	const count = await HospitalSchema.countDocuments();
+	hospitals.count = count;
 	return hospitals;
 }
 

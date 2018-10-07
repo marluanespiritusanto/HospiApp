@@ -7,6 +7,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardGuard } from '../services';
+import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
 
 const pagesROUTES: Routes = [
 	{
@@ -20,6 +23,10 @@ const pagesROUTES: Routes = [
 			{ path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
 			{ path: 'rxjs', component: RxjsComponent, data: { title: 'RxJS' } },
 			{ path: 'settings', component: AccountSettingsComponent, data: { title: 'Settings' } },
+			{ path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
+			{ path: 'users', component: UsersComponent, data: { title: 'Users Maintence' } },
+			{ path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitals Maintence' } },
+
 			{ path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 		]
 	}

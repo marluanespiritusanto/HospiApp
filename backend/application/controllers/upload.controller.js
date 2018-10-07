@@ -72,7 +72,7 @@ async function upload(req, res, next) {
 			serviceName: 'ngHospital API',
 			message: null,
 			payload: {
-				message: 'picture updated'
+				updatedImage: fileName
 			}
 		});
 	} catch (ex) {

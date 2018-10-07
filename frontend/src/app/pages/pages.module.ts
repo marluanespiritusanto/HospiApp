@@ -13,10 +13,29 @@ import { DonutGraphComponent } from '../components/donut-graph/donut-graph.compo
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component';
+import { CommonModule } from '@angular/common';
+import { UsersComponent } from './users/users.component';
+import { UploadModalComponent } from '../components/upload-modal/upload-modal.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
 
 @NgModule({
-  declarations: [PagesComponent, DashboardComponent, ProgressComponent, Graphics1Component, DonutGraphComponent, AccountSettingsComponent, PromisesComponent, RxjsComponent],
-  exports: [PagesComponent, DashboardComponent, ProgressComponent, Graphics1Component],
-  imports: [PAGES_ROUTES, SharedModule, FormsModule, ChartsModule]
+	declarations: [
+		PagesComponent,
+		DashboardComponent,
+		ProgressComponent,
+		Graphics1Component,
+		DonutGraphComponent,
+		AccountSettingsComponent,
+		PromisesComponent,
+		RxjsComponent,
+		ProfileComponent,
+		UsersComponent,
+		UploadModalComponent,
+		HospitalsComponent
+	],
+	exports: [PagesComponent, DashboardComponent, ProgressComponent, Graphics1Component],
+	imports: [PAGES_ROUTES, SharedModule, FormsModule, ChartsModule, PipesModule, CommonModule]
 })
 export class PagesModule {}

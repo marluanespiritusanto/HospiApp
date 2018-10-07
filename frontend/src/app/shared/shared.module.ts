@@ -5,10 +5,11 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
-  imports: [RouterModule, CommonModule],
-  declarations: [BreadcrumbsComponent, HeaderComponent, PagenotfoundComponent, SidebarComponent],
-  exports: [BreadcrumbsComponent, HeaderComponent, PagenotfoundComponent, SidebarComponent]
+	imports: [RouterModule, CommonModule, PipesModule],
+	declarations: [BreadcrumbsComponent, HeaderComponent, PagenotfoundComponent, SidebarComponent],
+	exports: [BreadcrumbsComponent, HeaderComponent, PagenotfoundComponent, SidebarComponent]
 })
 export class SharedModule {}

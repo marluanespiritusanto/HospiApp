@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
 import { API_URI } from '../../config';
 import { map } from 'rxjs/operators';
+import { FilesService } from '../files/files.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,8 +12,13 @@ export class UserService {
 	user: User;
 	token: string;
 
-	constructor(public http: HttpClient) {
+	constructor(public http: HttpClient, public fileService: FilesService) {
 		this.LoadDataFromLocalStorage();
+	}
+
+	public GetUsers(page: number = 0) {
+		let url = API_URI + '/user?page=' + page;
+		return this.http.get(url);
 	}
 
 	public CreateUser(user: User) {
@@ -40,7 +46,6 @@ export class UserService {
 		return this.http.post(url, { token }).pipe(
 			map((response: any) => {
 				const payload = response.payload;
-				console.log(payload);
 				this.SaveOnLocalStorage(payload);
 				return payload;
 			})
@@ -50,7 +55,6 @@ export class UserService {
 	public SaveOnLocalStorage(data) {
 		const currentUser: string = JSON.stringify(data);
 		localStorage.setItem('currentUser', currentUser);
-		debugger;
 		this.user = data.currentUser;
 		this.token = data.token;
 	}
@@ -72,5 +76,85 @@ export class UserService {
 		this.user = null;
 		this.token = '';
 		localStorage.removeItem('currentUser');
+	}
+
+	public UpdateProfile(user: User) {
+		let url = API_URI + '/user/' + this.user._id;
+		return this.http
+			.put(url, user, {
+				headers: {
+					Authorization: this.token
+				}
+			})
+			.pipe(
+				map((response: any) => {
+					const currentLS = JSON.parse(localStorage.getItem('currentUser'));
+					const payload = response.payload.updatedUser;
+					currentLS.currentUser = payload;
+					this.SaveOnLocalStorage(currentLS);
+					return currentLS;
+				})
+			);
+	}
+
+	public UpdateProfileImage(image: File, id: string) {
+		this.fileService
+			.FileUpload(image, 'user', id)
+			.then((res: any) => {
+				const currentLS = JSON.parse(localStorage.getItem('currentUser'));
+				const payload = res.payload.updatedImage;
+				this.user.picture = payload;
+				currentLS.currentUser.picture = payload;
+				this.SaveOnLocalStorage(currentLS);
+				alert('picture updated');
+				return currentLS;
+			})
+			.catch(console.log);
+	}
+
+	public FindUser(query: string) {
+		let url = API_URI + '/search/users?query=' + query;
+		return this.http
+			.get(url, {
+				headers: {
+					Authorization: this.token
+				}
+			})
+			.pipe(
+				map((res: any) => {
+					return res.payload.users;
+				})
+			);
+	}
+
+	public DeleteUser(id: string) {
+		let url = API_URI + '/user/' + id;
+		return this.http.delete(url, {
+			headers: {
+				Authorization: this.token
+			}
+		});
+	}
+
+	public UpdateRole(user: User) {
+		let url = API_URI + '/user/' + user._id;
+		return this.http
+			.put(url, user, {
+				headers: {
+					Authorization: this.token
+				}
+			})
+			.pipe(
+				map((response: any) => {
+					if (this.user._id === user._id) {
+						const currentLS = JSON.parse(localStorage.getItem('currentUser'));
+						const payload = response.payload.updatedUser;
+						currentLS.currentUser = payload;
+						this.SaveOnLocalStorage(currentLS);
+						return currentLS;
+					}
+					return true;
+				})
+			);
 	}
 }

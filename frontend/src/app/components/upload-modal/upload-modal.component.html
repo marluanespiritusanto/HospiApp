@@ -1,0 +1,23 @@
+<div class="modalShow animated fadeIn" [ngClass]="uploadModalService.isShow">
+  <div class="modal" tabindex="-1" role="dialog" style="display: block">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Picture</h5>
+          <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" align="center">
+          <img *ngIf="!tempImage" [src]="'xxx' | image" style="width: 150px;">
+          <img *ngIf="tempImage" [src]="tempImage" style="width: 150px;">
+          <input (change)="SelectFile($event.target.files[0])" type="file">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="CloseModal()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="UpdateImage()" [disabled]="!tempImage">Update picture</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

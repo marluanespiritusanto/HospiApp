@@ -10,7 +10,7 @@ async function getAllUsers(index) {
 		.skip(index)
 		.limit(5);
 
-	const count = await UserSchema.count();
+	const count = await UserSchema.countDocuments();
 	users.countDocuments = count;
 	return users;
 }

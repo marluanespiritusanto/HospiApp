@@ -40,7 +40,7 @@ async function getAllUsers(req, res, next) {
 			message: null,
 			payload: {
 				users,
-				count: users.count
+				count: users.countDocuments
 			}
 		});
 	} catch (ex) {
